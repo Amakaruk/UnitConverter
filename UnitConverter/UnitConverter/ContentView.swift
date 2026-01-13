@@ -31,15 +31,23 @@ struct ContentView: View {
 
                 Section("Result") {
                     Text(result)
+                        .font(.title2)
+                        .foregroundStyle(input.isEmpty ? .secondary : .primary)
                 }
             }
             .navigationTitle("Unit Converter")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Clear") { input = "" }
+                        .disabled(input.isEmpty)
+                }
+            }
         }
     }
 
     var result: String {
-        guard let value = Double(input), !input.isEmpty else {
-            return "Enter a number"
+        guard let value = Double(input), value > 0 else {
+            return "Enter a positive number"
         }
 
         let toMeters: [String: Double] = [
@@ -58,7 +66,7 @@ struct ContentView: View {
         let meters = value * inputFactor
         let output = meters / outputFactor
 
-        return String(format: "%.4f \(toUnit)", output)
+        return String(format: "%.4f %@", output, toUnit)
     }
 }
 
