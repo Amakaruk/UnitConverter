@@ -5,7 +5,7 @@ struct ContentView: View {
     @State private var fromUnit = "Meters"
     @State private var toUnit = "Feet"
 
-    let units = ["Meters", "Kilometers", "Feet", "Yards", "Miles"]
+    let units = ["Kilometers", "Meters" , "Miles", "Feet"]
 
     var body: some View {
         NavigationStack {
@@ -31,7 +31,7 @@ struct ContentView: View {
 
                 Section("Result") {
                     Text(result)
-                        .font(.title2)
+                        .font(.body)
                         .foregroundStyle(input.isEmpty ? .secondary : .primary)
                 }
             }
